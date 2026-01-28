@@ -1,3 +1,5 @@
 #!/bin/bash/
 
-echo 'Learing shell script'
+NAME=ShellScript
+
+echo 'Learing shell' $NAME
