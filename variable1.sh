@@ -14,3 +14,4 @@ then
   echo "The given number $number is greater then 0"
 else
   echo "The given number $number is less then 0"
+fi  
