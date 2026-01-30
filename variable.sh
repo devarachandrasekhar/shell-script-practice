@@ -2,5 +2,5 @@
 
 NAME=ShellScript
 
-echo 'Learinggt' $NAME
+echo 'Learing' $NAME
 
