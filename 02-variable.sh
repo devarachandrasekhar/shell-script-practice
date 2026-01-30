@@ -1,5 +1,7 @@
 #!/bin/bash/
 
+#passing the variables from commandline
+
 NAME1=$1
 NAME2=$2
 
