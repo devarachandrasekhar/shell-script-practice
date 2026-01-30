@@ -1,8 +1,7 @@
 #!/bin/bash/
 
-PERSONS=('ramu','chandu','teja')
+PERSONS=('ramu' 'chandu' 'teja')
 
-PERSONS=('ramu','chandu','teja')
 
 echo "first person:${PERSONS[1]}"
 
