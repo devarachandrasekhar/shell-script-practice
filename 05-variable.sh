@@ -1,5 +1,7 @@
 #!/bin/bash/
 
+
+#Array: It can store n number of values
 PERSONS=('ramu' 'chandu' 'teja')
 
 

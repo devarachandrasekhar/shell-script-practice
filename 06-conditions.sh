@@ -1,5 +1,7 @@
 #!/bin/bash/
 
+#conditions
+
 NUMBER=$1
 
 if [ $NUMBER -gt 5 ]
