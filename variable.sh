@@ -10,4 +10,4 @@ VAR2=$2
 echo "$VAR1"
 echo "all variables $@"
 echo "no of variables $#"
-echo "script name $o"
+echo "script name $0"
