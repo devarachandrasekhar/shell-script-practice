@@ -35,4 +35,6 @@ yum install git -y
 
 validate $? git
 
+yum install mailx
+
 validate $? mailx
