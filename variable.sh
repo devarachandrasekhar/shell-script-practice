@@ -11,3 +11,9 @@ echo "$VAR1"
 echo "all variables $@"
 echo "no of variables $#"
 echo "script name $0"
+
+
+for i in {1..10}
+do
+  echo $I
+done
