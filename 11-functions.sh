@@ -14,6 +14,17 @@ if [ $USERID -ne 0 ]
 fi 
 
 
+yum install nginx -y
+
+validate $? nginx
+
+yum install git -y
+
+validate $? git
+
+validate $? mailx
+
+
 validate () {
 if [ $1 -ne 0 ]
 
@@ -26,11 +37,3 @@ if [ $1 -ne 0 ]
 fi  
 
 }
-
-yum install nginx -y
-
-validate $? nginx
-
-yum install git -y
-
-validate $? git

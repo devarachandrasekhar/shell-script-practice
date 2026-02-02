@@ -10,3 +10,6 @@ echo "no of values $#"
 echo "name of script $0"
 
 echo "exist status of previous command $?"
+
+
+sh special_variables.sh chandu damu 
