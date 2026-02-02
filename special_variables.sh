@@ -5,7 +5,7 @@ VAR2=$2
 
 echo "all values $@"
 
-echo "no of varibles $#"
+echo "no of values $#"
 
 echo "name of script $0"
 
