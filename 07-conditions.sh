@@ -11,5 +11,3 @@ else
   echo "Info:You are root user"
 
 fi  
-
-
