@@ -15,5 +15,5 @@ echo "script name $0"
 
 for i in {1..10}
 do
-  echo $I
+  echo $i
 done
