@@ -6,7 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-mkdir -p $LOGS_FOLDER
+
 
 LOGS_FOLDER="var/log/expense-logs"
 LOG_FILE=$(echo $0 | cut -d "." -f1)
@@ -32,7 +32,7 @@ CHECKROOT(){
 }
 
 
-
+mkdir -p $LOGS_FOLDER
 echo "Script started executing at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
 CHECKROOT
