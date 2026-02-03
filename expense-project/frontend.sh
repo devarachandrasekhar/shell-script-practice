@@ -26,6 +26,7 @@ CHECKROOT(){
       then
       echo "ERROR:: You must have sudo access to execute this script"
       exit 1 
+    fi  
 }
 
 mkdir -p $LOGS_FOLDER
