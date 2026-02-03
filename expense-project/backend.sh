@@ -67,13 +67,13 @@ npm install &>>$LOG_FILE_NAME
 VALIDATE $? "Installing dependencies"
 
 cp /home/ec2-user/shell-script-practice/expense-project/backend.service /etc/systemd/system/backend.service
-
+VALIDATE $? "copying backend.service"
 # Prepare MySQL Schema
 
 dnf install mysql -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing MySQL Client"
 
-mysql -h mysql.daws82s.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
+mysql -h 172.31.24.142 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
 VALIDATE $? "Setting up the transactions schema and tables"
 
 systemctl daemon-reload &>>$LOG_FILE_NAME
