@@ -2,7 +2,7 @@
 
 USERID=$(id -u)
 R="\e[31m"
-G="\e[31m"
+G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
@@ -17,7 +17,7 @@ VALIDATE(){
       echo -e "$2 ...$R FAILURE $N"
       exit 1
     else
-      echo -e "$2 ... $G SUCCESS $N"
+      echo -e "$2 ...$G SUCCESS $N"
     fi    
 
 }
@@ -56,7 +56,7 @@ VALIDATE $? "Moving to HTML Directory"
 unzip /tmp/frontend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Unzipping the frontend code"
 
-cp /home/ec2-user/expense-project/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE_NAME
+cp /home/ec2-user/shell-script-practice/expense-project/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE_NAME
 VALIDATE $? "Copying expense.conf"
 
 systemctl restart nginx  &>>$LOG_FILE_NAME
