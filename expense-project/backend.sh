@@ -36,55 +36,55 @@ mkdir -p $LOGS_FOLDER
 CHECK_ROOT
 
 dnf module disable nodejs -y &>>$LOG_FILE_NAME
-validate $? "Disable default nodejs versions"
+VALIDATE $? "Disable default nodejs versions"
 
 dnf module enable nodejs:20 -y &>>$LOG_FILE_NAME
-validate $? "Enable nodejs:20 version"
+VALIDATE $? "Enable nodejs:20 version"
 
 
 dnf install nodejs -y &>>$LOG_FILE_NAME
-validate $? "Installing NodeJS"
+VALIDATE $? "Installing NodeJS"
 
 useradd expense &>>$LOG_FILE_NAME
-validate $? "Adding expense user"
+VALIDATE $? "Adding expense user"
 
 mkdir /app cd /app &>>$LOG_FILE_NAME
-validate $? "Creating app directory"
+VALIDATE $? "Creating app directory"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
-validate $? "Downloading Backend"
+VALIDATE $? "Downloading Backend"
 
 
 cd /app &>>$LOG_FILE_NAME
-validate $? "Moving to app directory"
+VALIDATE $? "Moving to app directory"
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
-validate $? "Unzip Backend"
+VALIDATE $? "Unzip Backend"
 
 npm install &>>$LOG_FILE_NAME
-validate $? "Install npm"
+VALIDATE $? "Install npm"
 
 cp /home/ec2-user/shell-script-practice/expense-project/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
-validate $? "Copy backend.service"
+VALIDATE $? "Copy backend.service"
 
 
 #Preparing MYSQL Schema
 
 dnf install mysql -y &>>$LOG_FILE_NAME
-validate $? "Install Mysql"
+VALIDATE $? "Install Mysql"
 
 mysql -h 172.31.26.145 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
-validate $? "Setting up transactions schema and tables"
+VALIDATE $? "Setting up transactions schema and tables"
 
 
 systemctl daemon-reload &>>$LOG_FILE_NAME
-validate $? "Daemon reload"
+VALIDATE $? "Daemon reload"
 
 systemctl enable backend &>>$LOG_FILE_NAME
-validate $? "Enabling backend"
+VALIDATE $? "Enabling backend"
 
 systemctl restart backend &>>$LOG_FILE_NAME
-validate $? "Restarting backend"
+VALIDATE $? "Restarting backend"
 
 
 
