@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bin/bash/
 
 USERID=$(id -u)
 R="\e[31m"
@@ -7,49 +7,44 @@ Y="\e[33m"
 N="\e[0m"
 
 LOGS_FOLDER="/var/log/expense-logs"
-LOG_FILE=$(echo $0 | cut -d "." -f1 )
+LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2 ... $R FAILURE $N"
-        exit 1
+      echo -e "$2 ...$R FAILURE $N"
+      exit 1
     else
-        echo -e "$2 ... $G SUCCESS $N"
-    fi
+      echo -e "$2 ...$G SUCCESS $N"
+    fi    
+
 }
 
-CHECK_ROOT(){
+CHECK_ROOT() {
     if [ $USERID -ne 0 ]
-    then
-        echo "ERROR:: You must have sudo access to execute this script"
-        exit 1 #other than 0
-    fi
+        then 
+          echo "ERROR: You must have root access to execute this script"
+          exit 1
+    fi      
+
 }
 
 mkdir -p $LOGS_FOLDER
-echo "Script started executing at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
 CHECK_ROOT
 
+
 dnf install mysql-server -y &>>$LOG_FILE_NAME
-VALIDATE $? "Installing MySQL Server"
+validate $? "Installing Mysql"
 
 systemctl enable mysqld &>>$LOG_FILE_NAME
-VALIDATE $? "Enabling MySQL Server"
+validate $? "Enable mysqld"
 
 systemctl start mysqld &>>$LOG_FILE_NAME
-VALIDATE $? "Starting MySQL Server"
+validate $? "Start mysqld"
 
-mysql -h 172.31.31.140 -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE_NAME
 
-if [ $? -ne 0 ]
-then
-    echo "MySQL Root password not setup" &>>$LOG_FILE_NAME
-    mysql_secure_installation --set-root-pass ExpenseApp@1
-    VALIDATE $? "Setting Root Password"
-else
-    echo -e "MySQL Root password already setup ... $Y SKIPPING $N"
-fi
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE_NAME
+validate $? "Changed Default Password"
